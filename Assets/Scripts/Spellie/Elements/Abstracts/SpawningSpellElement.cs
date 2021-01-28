@@ -9,7 +9,7 @@ namespace Spellie.Elements.Abstracts
         where TSelf:SpawningSpellElement<TSelf>
     {
         
-        [SpellieProperty("at")] public string at = Utility.Src.TARGET;
+        [SpellieProperty("at")] public string at = Utility.Src.HIT;
 
         
         [SpellieProperty("use_global")] public bool useGlobal;

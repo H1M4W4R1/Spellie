@@ -1,5 +1,6 @@
 ﻿using System;
 using Spellie.Tools;
+using Spellie.Tools.Parsing;
 using UnityEngine;
 
 namespace Spellie.Samples
@@ -13,6 +14,12 @@ namespace Spellie.Samples
 
         [TextArea(50, Int32.MaxValue)]
         public string spell;
+
+        [ContextMenu("Parse Spell")]
+        void Parse()
+        {
+            ISLParser.ParseSpell(spell);
+        }
         
         void Update()
         {
@@ -31,12 +38,12 @@ namespace Spellie.Samples
             if (useKeyDownInsteadOfKeyForSpell)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
-                    SpellieParser.ParseSpell(spell).Cast(e, e, e);
+                    ISLParser.ParseSpell(spell).Cast(e, e, e);
             }
             else
             {
                 if (Input.GetKey(KeyCode.Space))
-                    SpellieParser.ParseSpell(spell).Cast(e, e, e);
+                    ISLParser.ParseSpell(spell).Cast(e, e, e);
             }
         }
     }

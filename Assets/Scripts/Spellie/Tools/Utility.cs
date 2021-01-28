@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Spellie.SpawnedObjects;
+using Spellie.Tools.Parsing;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ namespace Spellie.Tools
             public const string NONE = "none";
             public const string CASTER = "caster";
             public const string SOURCE = "source";
+            public const string HIT = "hit"; // On target
             public const string TARGET = "target";
         }
         public class Direction
@@ -122,7 +124,7 @@ namespace Spellie.Tools
                 case Src.CASTER:
                     parent = caster;
                     break;
-                case Src.TARGET:
+                case Src.HIT: case Src.TARGET:
                     parent = target;
                     break;
             }
@@ -269,7 +271,7 @@ namespace Spellie.Tools
         }
 
         /// <summary>
-        /// Parses string to object, used in <see cref="SpellieParser"/>
+        /// Parses string to object, used in <see cref="ISLParser"/>
         /// </summary>
         /// <param name="data"></param>
         /// <param name="t"></param>

@@ -11,9 +11,9 @@ using Spellie.Structure;
 using Spellie.Structure.Attributes;
 using UnityEngine;
 
-namespace Spellie.Tools
+namespace Spellie.Tools.Parsing
 {
-    public static class SpellieParser
+    public static class ISLParser
     {
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Spellie.Tools
         /// <summary>
         /// Switches logging of spell creation info
         /// </summary>
-        public static bool logEnabled = false;
+        public static bool logEnabled = true;
         
         /// <summary>
         /// Known spell elements
@@ -59,12 +59,18 @@ namespace Spellie.Tools
                     }
                 }
 
+                if (logEnabled)
+                {
+                    Debug.Log($"Found: {knownSpellElements.Count} Spell Elements & {knownMovements.Count} Movement Types");
+                    
+                }
+                
                 _initialized = true;
             }
         }
         
         /// <summary>
-        /// Parses spell from SSL code
+        /// Parses spell from ISL code
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -92,6 +98,8 @@ namespace Spellie.Tools
                     line = line.Remove(0, 1);
                     amoSpaces++;
                 }
+                
+                if(logEnabled) Debug.Log("[SpellieParser] Parsing: " + line);
 
                 // Remove objects that has been ended
                 while (
@@ -125,14 +133,19 @@ namespace Spellie.Tools
                 if (string.IsNullOrEmpty(line)) continue;
                 
                 // Split line into data and params
-                var split = line.Split(' ');
+                var split = line.Split(':');
                 
                 // Get command
                 var command = split[0];
-                split[0] = " ";
-                
-                // Join data
-                var data = string.Join(" ", split);
+                command = command.Trim(' ', '\r');
+                var data = "";
+                if (split.Length > 1)
+                {
+                    data = split[1];
+                    data = data.Trim('\"', '\r');
+                }
+
+                if(logEnabled) Debug.Log("[SpellieParser] Command: \"" + command + "\" with data: \"" + data + "\"");
                 
                 // Get param (SSL is single-param based)
                 var param = data.Replace(" ", "");
@@ -200,8 +213,9 @@ namespace Spellie.Tools
                         goto end;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Debug.LogError(ex);
                     // Do nothing :)
                 }
 
@@ -234,9 +248,10 @@ namespace Spellie.Tools
                             goto end;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         // Nothing
+                        Debug.LogError(ex);
                     }
                 }
 
@@ -253,7 +268,15 @@ namespace Spellie.Tools
                     if (field != null)
                     {
                         var type = field.FieldType;
+                        
+                        // Trim triangle from object definitions
+                        if (command == "object")
+                            param = param.Trim('<', '>');
+                        
                         var value = Utility.FromString(param, type);
+                        
+                        
+                            
 
                         (currentObject as MetaObject)?.Set(command, value);
                         

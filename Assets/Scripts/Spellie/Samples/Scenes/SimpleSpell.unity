@@ -1325,13 +1325,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useKeyDownInsteadOfKeyForSpell: 1
   speed: 5
-  spell: "projectile_circle\n target any\n piercing 0\n amount 8\n direction forward\nobject
-    projectile\n distance 1.5\n movement linear\n  speed (0,0,2)\n onHit\n  target
-    evil\n  delay\n   time 0.1\n   onDelayPassed\n    projectile_circle\n     target
-    evil\n     amount 32\n     direction forward\n     object projectile\n     piercing
-    0\n     at target\n     distance 1\n     movement linear\n      speed (0,0,2)\n    
-    onHit\n      target evil\n      debug\n       text I/ylove/ybananas\n       onEvent\n       
-    target evil\n        damage\n         amount 5000"
+  spell: "projectile_circle \r\n target: any\r\n piercing: 0\r\n amount: 8\r\n direction:
+    forward\r\n object: projectile\r\n distance: 1.5\r\n movement: linear \r\n  speed:
+    (0,0,2)\r\n onHit:\r\n  target: evil\r\n  delay \r\n   time: 0.1\r\n   onDelayPassed:\r\n   
+    projectile_circle \r\n     target: evil\r\n     amount: 32\r\n     direction:
+    forward\r\n     object: projectile\r\n     piercing: 0\r\n     at: target\r\n    
+    distance: 1\r\n     movement: linear \r\n      speed: (0,0,2)\r\n     onHit:\r\n     
+    target: evil\r\n      damage\r\n       amount: 50\r\n"
 --- !u!1 &286656133
 GameObject:
   m_ObjectHideFlags: 0
