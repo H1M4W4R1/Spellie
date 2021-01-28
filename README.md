@@ -139,6 +139,7 @@ To add an event into your element, you need SpellieEventAttribute
 [SpellieEvent("onEffectRemoved")] public SpellieEvent onEffectRemoved = new SpellieEvent();
 ```
 it also has 2 parameters as SpellieProperty with same usage, however the name is for event instead of property, it matters when it comes to ISL.
+**IMPORTANT: Event must start with `on`. Otherwise ISL parser will parse it as Property not as event.**
 
 ## ISL - Intermediate Spell Language
 ISL is a simple way to create spells. It can be done quickly and makes it easily readable.
