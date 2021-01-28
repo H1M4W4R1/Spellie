@@ -139,22 +139,38 @@ it also has 2 parameters as SpellieProperty with same usage, however the name is
 ESL is a simple way to create spells. It can be done quickly and makes it easily readable.
 Example is below
 ```
-projectile_circle
- piercing 0
- amount 8
- direction forward
- object projectile
- distance 1.5
- movement linear
-  speed (0,0,2)
- onHit
-  target evil
-  damage
-   amount 50
+projectile_circle 
+ target: any
+ piercing: 0
+ amount: 8
+ direction: forward
+ object: <projectile>
+ distance: 1.5
+ movement: linear 
+  speed: (0,0,2)
+ onHit:
+  target: evil
+  delay 
+   time: 0.1
+   onDelayPassed:
+    projectile_circle 
+     target: evil
+     amount: 32
+     direction: forward
+     object: <projectile>
+     piercing: 0
+     at: target
+     distance: 1
+     movement: linear 
+      speed: (0,0,2)
+     onHit:
+      target: evil
+      damage
+       amount: 50
 ```
 
 You need to start ESL with an Spellie Element - this will be a primary element executed on caster. Then every Spellie Element may have properties or events. Event cannot be used on other event or on movement. Spellie Movement and Events also can have properties, however the property must be implemented inside that Element/Event/Movement, otherwise Parser will throw error. Same happens if you miss required property.
-Every deeper element needs one space longer indent. As you can see above properties and events on projectile_circle has one indent, however properties and elements at onHit event or linear movement has 2 space indent. Property of damage element has 3 space indent. Thanks to this parser creates spell dynamically and does not need to create whole spell when it finds error.
+Every deeper element needs one space longer indent. Thanks to this parser creates spell dynamically and does not need to create whole spell when it finds error.
 
 ## Movement of SpellieObjects
 As you probably have seen Spellie has possibility to define movement of the objects. It's quite good, because it's processed on separate thread, which allows you to move large amount of objects with quite good performance.
