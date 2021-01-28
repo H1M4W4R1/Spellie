@@ -1,4 +1,4 @@
-Spellie - Programmable Spells for Unity3D
+Spellie - Programmable Spells for Unity3D  
 Current State: WIP (slowly developed, low priority support, use at own risk)
 ===========
 Developed by Patryk Pastuszka
