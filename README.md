@@ -1,6 +1,6 @@
 Spellie - Programmable Spells for Unity3D  
 ===========
-Current State: WIP (slowly developed, low priority support, use at own risk)
+Current State: WIP (slowly developed, low priority support, use at own risk)  
 Developed by Patryk Pastuszka
 
 ## What is spellie?
