@@ -120,62 +120,33 @@ As you can see DamageElement extends from SpellieElement that is generic of Dama
 ```
 Also above you need an abstract that will be used to create your element. Unforunately generic types cannot be easily instantiated, so that abstract contains builder to make your generic type available for construction.
 
-Also see SpellieElement attribute, it's used to define ESL name for this element. We'll mention ESL later...
+Also see SpellieElement attribute, it's used to define ISL name for this element. We'll mention ISL later...
 
 To add an property to your SpellieElement you need to use SpellieProperty attribute
 ```csharp
 [SpellieProperty("affinity")] public string affinity;
 ```
-SpelliePropertyAttribute has 2 parameters - string that is name of property in ESL and boolean that is false - which causes spell to throw error if the property is missing. Used commonly in ESL compilation.
+SpelliePropertyAttribute has 2 parameters - string that is name of property in ISL and boolean that is false - which causes spell to throw error if the property is missing. Used commonly in ISL compilation.
 
 To add an event into your elemeny, you need SpellieEventAttribute
 ```csharp
      [SpellieEvent("onEffectRemoved")]
         public SpellieEvent onEffectRemoved = new SpellieEvent();
 ```
-it also has 2 parameters as SpellieProperty with same usage, however the name is for event instead of property, it matters when it comes to ESL.
+it also has 2 parameters as SpellieProperty with same usage, however the name is for event instead of property, it matters when it comes to ISL.
 
-## ESL - Embedded Spell Language
-ESL is a simple way to create spells. It can be done quickly and makes it easily readable.
+## ISL - Intermediate Spell Language
+ISL is a simple way to create spells. It can be done quickly and makes it easily readable.
 Example is below
-```
-projectile_circle 
- target: any
- piercing: 0
- amount: 8
- direction: forward
- object: <projectile>
- distance: 1.5
- movement: linear 
-  speed: (0,0,2)
- onHit:
-  target: evil
-  delay 
-   time: 0.1
-   onDelayPassed:
-    projectile_circle 
-     target: evil
-     amount: 32
-     direction: forward
-     object: <projectile>
-     piercing: 0
-     at: target
-     distance: 1
-     movement: linear 
-      speed: (0,0,2)
-     onHit:
-      target: evil
-      damage
-       amount: 50
-```
+![Spellie Example](https://i.imgur.com/yKo1Ahd.png)
 
-You need to start ESL with an Spellie Element - this will be a primary element executed on caster. Then every Spellie Element may have properties or events. Event cannot be used on other event or on movement. Spellie Movement and Events also can have properties, however the property must be implemented inside that Element/Event/Movement, otherwise Parser will throw error. Same happens if you miss required property.
+You need to start ISL with an Spellie Element - this will be a primary element executed on caster. Then every Spellie Element may have properties or events. Event cannot be used on other event or on movement. Spellie Movement and Events also can have properties, however the property must be implemented inside that Element/Event/Movement, otherwise Parser will throw error. Same happens if you miss required property.
 Every deeper element needs one space longer indent. Thanks to this parser creates spell dynamically and does not need to create whole spell when it finds error.
 
 ## Movement of SpellieObjects
 As you probably have seen Spellie has possibility to define movement of the objects. It's quite good, because it's processed on separate thread, which allows you to move large amount of objects with quite good performance.
 
-Every movement type needs to inherit from IMovementType and have SpellieMovement attribute which defines name of the movement used in ESL.
+Every movement type needs to inherit from IMovementType and have SpellieMovement attribute which defines name of the movement used in ISL.
 
 It can also inherit from IIgnorePosition, IIgnoreRotation or IIgnoreScale which makes the movement to ignore specified movement information. Or you just can create movement that is completely ignored and create physics-engine-based one.
 
