@@ -115,8 +115,13 @@ public class DamageElement<TSelf> : SpellieElement<DamageElement<TSelf>>
 As you can see DamageElement extends from SpellieElement that is generic of DamageElement. This allows for Spellie to have C# fluent builders. You just need to replace DamageElement with name of your element.
 
 ```csharp
- [SpellieElement("damage")]
-    public abstract class DamageElement
+[SpellieElement("damage")]
+public abstract class DamageElement
+{
+    public class Builder : DamageElement<Builder>{}
+
+    public static Builder New() => new Builder();
+}
 ```
 Also above you need an abstract that will be used to create your element. Unforunately generic types cannot be easily instantiated, so that abstract contains builder to make your generic type available for construction.
 
@@ -128,10 +133,9 @@ To add an property to your SpellieElement you need to use SpellieProperty attrib
 ```
 SpelliePropertyAttribute has 2 parameters - string that is name of property in ISL and boolean that is false - which causes spell to throw error if the property is missing. Used commonly in ISL compilation.
 
-To add an event into your elemeny, you need SpellieEventAttribute
+To add an event into your element, you need SpellieEventAttribute
 ```csharp
-     [SpellieEvent("onEffectRemoved")]
-        public SpellieEvent onEffectRemoved = new SpellieEvent();
+[SpellieEvent("onEffectRemoved")] public SpellieEvent onEffectRemoved = new SpellieEvent();
 ```
 it also has 2 parameters as SpellieProperty with same usage, however the name is for event instead of property, it matters when it comes to ISL.
 
