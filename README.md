@@ -4,7 +4,7 @@ Current State: WIP (slowly developed, low priority support, use at own risk)
 Developed by Patryk Pastuszka
 
 ## What is spellie?
-Spellie is an C# library that allows to create spells programatically or parse **Embedded Spell Language** into Spell Objects.
+Spellie is an C# library that allows to create spells programatically or parse **Intermediate Spell Language** into Spell Objects.
 This allows for either procedural or player-created spells, so this makes your life easier.
 
 ## Currently supported Spell Elements
