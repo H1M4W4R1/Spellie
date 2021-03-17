@@ -7,6 +7,9 @@ Developed by Patryk Pastuszka
 Spellie is an C# library that allows to create spells programatically or parse **Intermediate Spell Language** into Spell Objects.
 This allows for either procedural or player-created spells, so this makes your life easier.
 
+## Scene Objects
+Spellie requires scene to have Spellie Singleton on scene. It is also recommended to implment built-in Prefab Loader, otherwise you would need to implement custom one to support spawning elements.
+
 ## Currently supported Spell Elements
 Sub-lists contain information about ISL names and its usage.
 
