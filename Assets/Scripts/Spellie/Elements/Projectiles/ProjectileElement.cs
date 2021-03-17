@@ -54,7 +54,7 @@ namespace Spellie.Elements.Projectiles
             
             // Calculate position
             if (positionParent != null)
-                calPos = diff + positionParent.GetTransform().position;
+                calPos = diff + positionParent.GetPosition();
             else
                 calPos = target.GetPosition() + diff;
 

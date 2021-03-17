@@ -53,7 +53,7 @@ namespace Spellie.Elements.Projectiles
                 
                 // Calculate position
                 Vector3 cPos;
-                cPos = positionParent?.GetTransform().position ?? target.GetPosition();
+                cPos = positionParent?.GetPosition() ?? target.GetPosition();
 
 
                 // Spawn new projectile

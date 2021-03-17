@@ -39,7 +39,7 @@ namespace Spellie.Elements.Zone
 
             // Calculate position
             if (parent != null)
-                calPos = parent.GetTransform().position;
+                calPos = parent.GetPosition();
             else
                 calPos = target.GetPosition();
 

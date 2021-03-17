@@ -13,12 +13,6 @@ namespace Spellie.Tools
         bool ApplyEffect(Effect effect);
 
         /// <summary>
-        /// Gets position of entity, in 3D games remember to place this at level of hand
-        /// </summary>
-        /// <returns></returns>
-        Vector3 GetPosition();
-        
-        /// <summary>
         /// Gets look direction of entity
         /// in 2D games remember to make y an 0-valued
         /// in HnS games recommended is to use cursor position ray-cast plus base height of hand as y value

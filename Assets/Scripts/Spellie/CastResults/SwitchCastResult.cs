@@ -58,5 +58,10 @@ namespace Spellie.CastResults
         {
             return caster.GetTransform();
         }
+
+        public Vector3 GetPosition()
+        {
+            return caster.GetPosition();
+        }
     }
 }

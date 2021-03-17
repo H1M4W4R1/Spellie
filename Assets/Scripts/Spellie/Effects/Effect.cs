@@ -93,5 +93,10 @@ namespace Spellie.Effects
         {
             return effectTarget.GetTransform();
         }
+
+        public Vector3 GetPosition()
+        {
+            return effectTarget.GetPosition();
+        }
     }
 }

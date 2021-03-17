@@ -116,6 +116,11 @@ namespace Spellie.CastResults
             return transform;
         }
 
+        public Vector3 GetPosition()
+        {
+            return source.GetPosition();
+        }
+
         /// <summary>
         /// Ends channeling spell
         /// </summary>

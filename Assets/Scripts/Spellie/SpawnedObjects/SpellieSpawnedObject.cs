@@ -21,7 +21,8 @@ namespace Spellie.SpawnedObjects
         /// If true then the object will use global position instead of local
         /// </summary>
         public bool useGlobalPosition;
-        
+
+        private Transform _transform;
         
         private Quaternion _currentRotation;
         private Vector3 _currentPosition;
@@ -112,6 +113,7 @@ namespace Spellie.SpawnedObjects
 
         private void Awake()
         {
+            _transform = GetComponent<Transform>();
             _currentPosition = spawnPos;
             
             
@@ -195,7 +197,12 @@ namespace Spellie.SpawnedObjects
         /// <inheritdoc />
         public Transform GetTransform()
         {
-            return transform;
+            return _transform;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return _transform.position;
         }
     }
 }
